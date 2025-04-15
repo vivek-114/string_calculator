@@ -26,5 +26,10 @@ RSpec.describe StringCalculator do
       expect(StringCalculator.add("//;\n1;2")).to eq(3)
       expect(StringCalculator.add("//*\n1*2*3")).to eq(6)
     end
+
+    it 'ignores numbers bigger than 1000' do
+      expect(StringCalculator.add("2,1001")).to eq(2)
+      expect(StringCalculator.add("1000,2")).to eq(1002)
+    end
   end
 end
