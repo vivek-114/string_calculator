@@ -13,6 +13,7 @@ class StringCalculator
       numbers.gsub("\n", delimiter)
              .split(delimiter)
              .map(&:to_i)
+             .reject { |n| n > 1000 }
              .sum
     end
 end
