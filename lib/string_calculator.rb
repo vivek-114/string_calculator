@@ -10,10 +10,16 @@ class StringCalculator
         numbers = input.split("\n", 2)[1]
       end
 
-      numbers.gsub("\n", delimiter)
-             .split(delimiter)
-             .map(&:to_i)
-             .reject { |n| n > 1000 }
+      numbers = numbers.gsub("\n", delimiter)
+                      .split(delimiter)
+                      .map(&:to_i)
+
+      negatives = numbers.select { |n| n < 0 }
+      if negatives.any?
+        raise "negative numbers not allowed: #{negatives.join(', ')}"
+      end
+
+      numbers.reject { |n| n > 1000 }
              .sum
     end
 end
